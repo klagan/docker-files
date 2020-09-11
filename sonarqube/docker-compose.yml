@@ -1,0 +1,28 @@
+version: "2"
+
+services:
+  sonarqube:
+    image: sonarqube:8.4.2-community
+    container_name: my_sonarqube
+    environment:
+      - SONARQUBE_JDBC_URL=${DATABASE_CONNECTIONSTRING}
+      - SONARQUBE_JDBC_USERNAME=${DATABASE_USERNAME}
+      - SONARQUBE_JDBC_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      - sonarnet
+
+  nginx:
+    container_name: my_nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx  # we use a dockerfile over an image in this example simply because of the .conf
+    ports:
+      - 8080:80   # can use this port tocheck nginx is working
+      - 443:443   # this port will be used for TLS access
+      - 80:80     # this will be for standard http
+    networks:
+      - sonarnet
+
+networks:
+  sonarnet:
+    driver: bridge
