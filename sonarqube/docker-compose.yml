@@ -1,25 +1,44 @@
-version: "2"
-
+version: '3.3'
 services:
-  sonarqube:
-    image: sonarqube:8.4.2-community
-    container_name: my_sonarqube
-    environment:
-      - SONARQUBE_JDBC_URL=${DATABASE_CONNECTIONSTRING}
-      - SONARQUBE_JDBC_USERNAME=${DATABASE_USERNAME}
-      - SONARQUBE_JDBC_PASSWORD=${DATABASE_PASSWORD}
+
+  proxy:
+    image: nginx:1.19.2
+    container_name: sonarqube-proxy
+    ports:
+      - "80:8080"
+      - "8080:8080"
+
+    restart: always
+    volumes:
+     - ./proxy/conf.d/:/etc/nginx/conf.d/:ro
+    depends_on: 
+      - app
     networks:
       - sonarnet
 
-  nginx:
-    container_name: my_nginx
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx  # we use a dockerfile over an image in this example simply because of the .conf
+  app:
+    image: sonarqube:8.4.2-community
+    container_name: sonarqube-app
+    restart: always
+    environment:
+      - SONARQUBE_JDBC_URL=${SONARQUBE_DATABASE_CONNECTIONSTRING}
+      - SONARQUBE_JDBC_USERNAME=${SONARQUBE_DATABASE_USERNAME}
+      - SONARQUBE_JDBC_PASSWORD=${SONARQUBE_DATABASE_PASSWORD}
+    networks:
+      - sonarnet
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
+    container_name: sonarqube-db
+    restart: always
     ports:
-      - 8080:80   # can use this port tocheck nginx is working
-      - 443:443   # this port will be used for TLS access
-      - 80:80     # this will be for standard http
+      - 1433:1433
+    environment:
+      - MSSQL_PID=Developer
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Aprexo#01
+    volumes:
+      - ./db/data:/var/opt/mssql/data
     networks:
       - sonarnet
 
