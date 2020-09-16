@@ -28,7 +28,7 @@ services:
       - sonarnet
 
   db:
-    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
+    image: mcr.microsoft.com/mssql/server:2017-GA-ubuntu
     container_name: sonarqube-db
     restart: always
     ports:
@@ -38,7 +38,10 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Aprexo#01
     volumes:
-      - ./db/data:/var/opt/mssql/data
+      - ./db/sqlsystem:/var/opt/mssql/
+      - ./db/sqldata:/var/opt/sqlserver/data
+      - ./db/sqllog:/var/opt/sqlserver/log
+      - ./db/sqlbackup:/var/opt/sqlserver/backup
     networks:
       - sonarnet
 

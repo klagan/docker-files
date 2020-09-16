@@ -1,3 +1,8 @@
 sonarqube/db/data
 .DS_Store
 mamute/.DS_Store
+sonarqube/db/sqlbackup
+sonarqube/db/sqldata
+sonarqube/db/sqllog
+sonarqube/db/sqlsystem
+sonarqube/db/sqlsystem/secrets
