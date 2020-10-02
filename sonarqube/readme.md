@@ -4,3 +4,5 @@
 # RUN ulimit -u 8192
 
 - [ ] need to clean up templates, write documentation and parameterise better
+
+These values need to present on the host
