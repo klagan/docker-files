@@ -36,7 +36,7 @@ services:
     environment:
       - MSSQL_PID=Developer
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Aprexo#01
+      - SA_PASSWORD=testing#01
     volumes:
       - ./db/sqlsystem:/var/opt/mssql/
       - ./db/sqldata:/var/opt/sqlserver/data
