@@ -1,5 +1,7 @@
 # Mamute
 
+[Original Source](https://github.com/jbasila/docker-mamute/tree/master/docker-image)
+
 - [ ] need to clean up templates, write documentation and parameterise better
 
 The image is based on the [**java:8-jdk**][java-container-url] base image, fetches [**Mamute**][mamute-url] version 1.5.0, extracts and places a startup script file that does all the magic.
