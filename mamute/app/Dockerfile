@@ -18,7 +18,7 @@ RUN chmod +x /opt/mamute/*.sh
 ENV VRAPTOR_ENV=production \
     \
     MAMUTE_HOST=localhost \
-    MAMUTE_PORT=80 \
+    MAMUTE_PORT= \
     MAMUTE_ENABLE_SIGNUP=true \
     MAMUTE_ALLOW_QUESTION_DELETE=true \
     MAMUTE_ENABLE_SOLR=true \

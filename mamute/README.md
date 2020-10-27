@@ -6,6 +6,7 @@
 - [ ] remove `links` in favour of docker networks
 - [ ] document how `startup.sh` works and what its doing - prolly convert into image
 - [ ] use db, app, proxy as names
+- [ ] mamute port in mamute must match mamute port in nginx.conf - currently hardcoded to 8080 (doesnt seem possible)
 
 The image is based on the [**java:8-jdk**][java-container-url] base image, fetches [**Mamute**][mamute-url] version 1.5.0, extracts and places a startup script file that does all the magic.
 

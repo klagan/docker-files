@@ -7,7 +7,7 @@ services:
     restart: always
     privileged: true
     volumes:
-      - mysql-db:/var/lib/mysql
+      - mamute-db:/var/lib/mysql
     ports:
         - 3306:3306
     environment:
@@ -15,13 +15,11 @@ services:
       MYSQL_DATABASE: mamute
       MYSQL_USER: mamute
       MYSQL_PASSWORD: mamute
-
     networks:
       - mamute-net
 
   mamute:
     container_name: mamute
-    image: local/mamute:1.5.0
     build:
       context: app
       dockerfile: Dockerfile
@@ -31,28 +29,29 @@ services:
       - mysql
     environment:
       - MAMUTE_PORT=8080
-    ports:
-        - 8080:8080
+    # ports:
+    #     - 8080:8080
     networks:
       - mamute-net
 
-  # proxy:
-  #   container_name: mamute-proxy
-  #   # image: nginx:1.9
-  #   image: local/mamute-proxy
-  #   # restart: always
-  #   privileged: true
-  #   # volumes:
-  #   #   #- /var/docker-storage/persistant/nginx:/etc/nginx:ro
-  #   #   - nginx:/etc/nginx:ro
-  #   ports:
-  #     - 443:443
-  #     - 80:80
-  #   networks:
-  #     - mamute-net
+  proxy:
+    container_name: proxy
+    build:
+      context: proxy
+      dockerfile: Dockerfile
+    restart: always
+    privileged: true
+    depends_on:
+      - mysql
+      - mamute
+    ports:
+      # - 443:443
+      - 80:80
+    networks:
+      - mamute-net
 
 volumes:
-  mysql-db:
+  mamute-db:
 
 networks:
   mamute-net:
