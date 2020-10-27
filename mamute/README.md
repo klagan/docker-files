@@ -3,6 +3,9 @@
 [Original Source](https://github.com/jbasila/docker-mamute/tree/master/docker-image)
 
 - [ ] need to clean up templates, write documentation and parameterise better
+- [ ] remove `links` in favour of docker networks
+- [ ] document how `startup.sh` works and what its doing - prolly convert into image
+- [ ] use db, app, proxy as names
 
 The image is based on the [**java:8-jdk**][java-container-url] base image, fetches [**Mamute**][mamute-url] version 1.5.0, extracts and places a startup script file that does all the magic.
 
@@ -33,7 +36,7 @@ docker run -d \
     --link mysql-mamute:mysql \
     -e MAMUTE_PORT=8080 \
     -p 8080:8080 \
-    jbasila/mamute:1.5.0
+    local/mamute:1.5.0
 ```
 .
 This is enough to test **Mamute** on localhost on port 8080. Navigate to http://localhost:8080.
