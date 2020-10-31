@@ -1,48 +1,58 @@
-mysql:
-  container_name: mysql-mamute
-  image: mysql:5.7.4
-  restart: always
-  privileged: true
+version: '3.3'
+services:
 
-  volumes:
-    - /var/docker-storage/persistant/mysql-mamute:/var/lib/mysql
+  mysql:
+    container_name: mamute-db
+    image: mysql:5.7.4
+    restart: always
+    privileged: true
+    volumes:
+      - mamute-db:/var/lib/mysql
+    ports:
+        - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secretpassword
+      MYSQL_DATABASE: mamute
+      MYSQL_USER: mamute
+      MYSQL_PASSWORD: mamute
+    networks:
+      - mamute-net
 
-  environment:
-    MYSQL_ROOT_PASSWORD: mamute
-    MYSQL_DATABASE: mamute
-    MYSQL_USER: mamute
-    MYSQL_PASSWORD: mamute
+  mamute:
+    container_name: mamute
+    build:
+      context: app
+      dockerfile: Dockerfile
+    restart: always
+    privileged: true
+    depends_on:
+      - mysql
+    environment:
+      - MAMUTE_PORT=8080
+    # ports:
+    #     - 8080:8080
+    networks:
+      - mamute-net
 
-mamute:
-  container_name: mamute
-  image: jbasila/mamute:1.4.0
-  restart: always
-  privileged: true
+  proxy:
+    container_name: proxy
+    build:
+      context: proxy
+      dockerfile: Dockerfile
+    restart: always
+    privileged: true
+    depends_on:
+      - mysql
+      - mamute
+    ports:
+      # - 443:443
+      - 80:80
+    networks:
+      - mamute-net
 
-  links:
-    - mysql:mysql
+volumes:
+  mamute-db:
 
-  volumes:
-    - /var/docker-storage/persistant/mamute/attachments:/opt/attachments
-
-  environment:
-    MAMUTE_HOST: 1.2.3.4
-    MAMUTE_ENABLE_SIGNUP: "true"
-    MAMUTE_ATTACHMENTS_PATH: /opt/attachments
-    MAIL_SERVER: smtp.company.com
-
-nginx:
-  container_name: nginx-mamute
-  image: nginx:1.9
-  restart: always
-  privileged: true
-
-  links:
-    - mamute:mamute
-
-  volumes:
-    - /var/docker-storage/persistant/nginx:/etc/nginx:ro
-
-  ports:
-    - 443:443
-    - 80:80
+networks:
+  mamute-net:
+    driver: bridge
