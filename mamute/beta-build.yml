@@ -11,7 +11,7 @@ steps:
       repository: docker.pkg.github.com/klagan/docker-images/mamute
       command: build
       Dockerfile: mamute/app/Dockerfile
-      buildContext: .
+      buildContext: mamute/app
       tags: |
         beta
       arguments: '--build-arg NUGET_UID=${{ parameters.nugetUid }} --build-arg NUGET_PWD=${{ parameters.nugetPwd }} --quiet'
@@ -23,7 +23,7 @@ steps:
       repository: docker.pkg.github.com/klagan/docker-images/mamute-proxy
       command: build
       Dockerfile: mamute/proxy/Dockerfile
-      buildContext: .
+      buildContext: mamute/proxy
       tags: |
         beta
       arguments: '--build-arg NUGET_UID=${{ parameters.nugetUid }} --build-arg NUGET_PWD=${{ parameters.nugetPwd }} --quiet'
