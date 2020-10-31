@@ -8,7 +8,7 @@ steps:
     displayName: 'build app beta image'
     inputs:
       containerRegistry: ${{ parameters.dockerRegistry }}
-      repository: docker.pkg.github.com/klagan/docker-images/mamute
+      repository: klagan/docker-images/mamute
       command: build
       Dockerfile: mamute/app/Dockerfile
       buildContext: mamute/app
@@ -20,7 +20,7 @@ steps:
     displayName: 'build proxy beta image'
     inputs:
       containerRegistry: ${{ parameters.dockerRegistry }}
-      repository: docker.pkg.github.com/klagan/docker-images/mamute-proxy
+      repository: klagan/docker-images/mamute-proxy
       command: build
       Dockerfile: mamute/proxy/Dockerfile
       buildContext: mamute/proxy
