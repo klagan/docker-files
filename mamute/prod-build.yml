@@ -24,7 +24,7 @@ steps:
       repository: klagan/docker-images/mamute-proxy
       command: build
       Dockerfile: mamute/proxy/Dockerfile
-      buildContext: proxy
+      buildContext: mamute/proxy
       tags: |
         $(Build.BuildId)
         latest
