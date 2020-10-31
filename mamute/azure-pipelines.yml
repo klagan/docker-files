@@ -19,6 +19,7 @@ trigger:
   branches:
     include:
       - master
+      - develop/*
 
 variables:
 - name: dockerRegistry
