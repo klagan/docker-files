@@ -20,7 +20,7 @@ steps:
     displayName: 'build proxy beta image'
     inputs:
       containerRegistry: ${{ parameters.dockerRegistry }}
-      repository: klagan/docker-images/mamute-proxy
+      repository: docker.pkg.github.com/klagan/docker-images/mamute-proxy
       command: build
       Dockerfile: mamute/proxy/Dockerfile
       buildContext: mamute/proxy
