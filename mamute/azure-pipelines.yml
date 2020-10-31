@@ -30,8 +30,8 @@ stages:
     pool:
           name: ${{ parameters.AgentName }}
           vmImage: 'ubuntu-latest'
-          demands: 
-          - Docker
+          # demands: 
+          # - Docker
     jobs:
         - job:
           displayName: "Build image"
