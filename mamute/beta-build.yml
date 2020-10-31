@@ -10,7 +10,7 @@ steps:
       containerRegistry: ${{ parameters.dockerRegistry }}
       repository: docker.pkg.github.com/klagan/docker-images/mamute
       command: build
-      Dockerfile: app/Dockerfile
+      Dockerfile: mamute/app/Dockerfile
       buildContext: mamute
       tags: |
         beta
@@ -22,7 +22,7 @@ steps:
       containerRegistry: ${{ parameters.dockerRegistry }}
       repository: docker.pkg.github.com/klagan/docker-images/mamute-proxy
       command: build
-      Dockerfile: proxy/Dockerfile
+      Dockerfile: mamute/proxy/Dockerfile
       buildContext: mamute
       tags: |
         beta
