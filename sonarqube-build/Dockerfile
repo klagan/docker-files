@@ -3,10 +3,10 @@
 
 FROM ubuntu:latest AS build-step
 
-ARG SONARQUBE_PROJECT_URL
-ARG SONARQUBE_PROJECT_KEY
-
-ENV DEBIAN_FRONTEND=noninteractive
+ENV SONARQUBE_PROJECT_URL= /
+    SONARQUBE_PROJECT_KEY= /
+    DEBIAN_FRONTEND=noninteractive
+    
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 RUN apt-get update \
