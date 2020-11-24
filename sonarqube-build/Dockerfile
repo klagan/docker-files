@@ -3,8 +3,8 @@
 
 FROM ubuntu:latest AS build-step
 
-ENV SONARQUBE_PROJECT_URL= /
-    SONARQUBE_PROJECT_KEY= /
+ENV SONARQUBE_PROJECT_URL= \
+    SONARQUBE_PROJECT_KEY= \
     DEBIAN_FRONTEND=noninteractive
     
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
