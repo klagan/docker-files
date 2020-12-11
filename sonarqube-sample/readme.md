@@ -5,7 +5,7 @@ This `Dockerfile` installs all the components for `Sonarqube scanner` to functio
 When we create a `child build image` we would inherit from this image and inject the following properties and call the `Sonarqube scanner` as here:
 
 ```
-RG SONARQUBE_PROJECT_URL= 
+ARG SONARQUBE_PROJECT_URL= 
 ARG SONARQUBE_PROJECT_KEY=    
 ARG DEBIAN_FRONTEND=noninteractive
 
