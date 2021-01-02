@@ -36,7 +36,7 @@ services:
       database__connection__port: 3306
       database__connection__database: ghost
       database__connection__user: root
-      database__connection__password: pissword
+      database__connection__password: p1ssword
     networks:
       - mynet
 
@@ -50,7 +50,7 @@ services:
       - data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ghost
-      MYSQL_ROOT_PASSWORD: pissword
+      MYSQL_ROOT_PASSWORD: p1ssword
     networks:
       - mynet
 

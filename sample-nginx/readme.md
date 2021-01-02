@@ -1,5 +1,7 @@
 # Getting started
 
+> this sample assumes you have an entry on the `hosts` file for `ghost.local` looping back to `127.0.0.1`.
+
 `/etc/nginx` stores the configuration of nginx
 `/usr/share` stores the content for each website
 
