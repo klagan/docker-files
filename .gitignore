@@ -8,3 +8,5 @@ sonarqube/db/sqlsystem
 sonarqube/db/sqlsystem/secrets
 ghost/ghost_2020-12-31.tar
 ghost/mysql_2020-12-31.tar
+azcli/*.env
+azcli/*.pem
