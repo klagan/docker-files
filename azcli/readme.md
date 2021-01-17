@@ -44,3 +44,8 @@ I wrapped this in a shell script so we can instead call:
 ```bash
 ./azcli.sh <myname>
 ```
+
+## Docker Compose
+
+The sample `docker-compose-sample.yml` allows you to spin up multiple containers for different accounts.  This allows you to `docker attach` to the containers in the ad-hoc or `docker attach` to each container in a different terminal window
+
