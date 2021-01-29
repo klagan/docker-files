@@ -88,3 +88,13 @@ klagan@ubuntu:~$ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 klagan@ubuntu:~$ 
 ```
+
+### Renew connection in the container
+
+If you decide to open multiple terminal tabs and `docker attach` to each connection container you may find the connection expires over time.  You can renew the connection by logging in again which could be initiated by running the following command in the container:
+
+```
+./usr/bin/loginaz
+```
+
+This runs the login command the container originally created - and kept - during start up.
