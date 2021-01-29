@@ -38,7 +38,7 @@ klagan@ubuntu:~$ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 c620824f6ee9        local/azcli         "./login.sh"        2 minutes ago       Up 2 minutes                            laganlabs
 903a6110065d        local/azcli         "./login.sh"        2 minutes ago       Up 2 minutes                            kamltest
-4c4eac923988        local/azcli         "./login.sh"        2 minutes ago       Up 2 minutes                            aprexo
+4c4eac923988        local/azcli         "./login.sh"        2 minutes ago       Up 2 minutes                            myclient
 ```
 
 ### Access connection
