@@ -16,6 +16,8 @@ Create a service principal with certificate (will need to be logged into AZ with
 ./create_connection_config.sh <new service principal name> <vault name>
 ```
 
+The script will present a "working" `docker-compose.yml` file which you can copy, paste, edit etc.  If you were to copy and paste into a `docker-compose.yml` file, it would be correct for the service prinicpal/account you just configured.
+
 ## Docker Compose
 
 The sample `docker-compose-sample.yml` allows you to spin up multiple containers for different accounts.  You may add multiple sections into the same `docker-compose` file.  This will allow you to create multiple connections at the same time.
