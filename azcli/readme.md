@@ -90,7 +90,7 @@ klagan@ubuntu:~$
 
 ### Renew connection in the container
 
-AZ CLI connections authise using tokens - if you decide to open multiple terminal tabs and `docker attach` to each connection container you may find the connection expires over time.  You can renew the connection by logging in again which could be initiated by running the following command in the container:
+AZ CLI connections authorise using tokens - if you decide to open multiple terminal tabs and `docker attach` to each connection container you may find the connection expires over time.  You can renew the connection by logging in again which could be initiated by running the following command in the container:
 
 ```
 ./usr/bin/loginaz
