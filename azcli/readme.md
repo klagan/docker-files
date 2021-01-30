@@ -27,12 +27,9 @@ This allows you to `docker attach` to the containers in the ad-hoc or `docker at
 
 ```dockercli
 # spin up the different azcli connections by section
-docker-compose up -d
-
-# sample output
 klagan@ubuntu:~$ docker-compose up -d
 Creating network "azcli_default" with the default driver
-Creating myclient    ... done
+Creating myclient  ... done
 Creating laganlabs ... done
 Creating kamltest  ... done
 
