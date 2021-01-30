@@ -23,7 +23,7 @@ The script will present a "working" `docker-compose.yml` file which you can copy
 The sample `docker-compose-sample.yml` allows you to spin up multiple containers for different accounts.  You may add multiple sections into the same `docker-compose` file.  This will allow you to create multiple connections at the same time.
 This allows you to `docker attach` to the containers in the ad-hoc or `docker attach` to each container in a different terminal window
 
-### Spin up containers
+### Spin up containers for configured connections
 
 ```dockercli
 # spin up the different azcli connections by section
@@ -40,7 +40,7 @@ c620824f6ee9        local/azcli         "./login.sh"        2 minutes ago       
 4c4eac923988        local/azcli         "./login.sh"        2 minutes ago       Up 2 minutes                            myclient
 ```
 
-### Access connection
+### Access connections
 
 Now we can connect to the instances as follows (sensitive information is obfuscated):
 
@@ -76,10 +76,10 @@ We can use `CTRL+P`, `CTRL+Q` to exit the container without closing the connecti
 klagan@ubuntu:~$ docker-compose down
 Stopping laganlabs ... done
 Stopping kamltest  ... done
-Stopping myclient    ... done
+Stopping myclient  ... done
 Removing laganlabs ... done
 Removing kamltest  ... done
-Removing myclient    ... done
+Removing myclient  ... done
 Removing network azcli_default
 
 # verify containers closed
