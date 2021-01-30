@@ -1,4 +1,5 @@
 #!/bin/bash
+# START HERE!
 # creates a service principal with certificate (.pem)
 # backs up certificate to key vault
 # creates associated environment (.env) file
