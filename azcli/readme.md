@@ -30,7 +30,7 @@ This allows you to `docker attach` to the containers in the ad-hoc or `docker at
 docker-compose up -d
 
 # sample output
-klagan@ubuntu:~/source/github/docker-files/azcli$ docker-compose up -d
+klagan@ubuntu:~$ docker-compose up -d
 Creating network "azcli_default" with the default driver
 Creating myclient    ... done
 Creating laganlabs ... done
