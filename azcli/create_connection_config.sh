@@ -5,16 +5,18 @@
 # creates associated environment (.env) file
 # displays sample (working) docker-compose file for new service principal
 
-if [[ $# -lt 2 ]]; then
+if [[ $# -lt 3 ]]; then
     echo -e "\nIncorrect arguments provided"
-    echo -e "\nusage: \t${0}\n\t{identifying name}\n\t{vault name to store certificate}"
-    echo -e "\neg: \t${0} myrandomname myvaultname\n"
+    echo -e "\nusage: \t${0}\n\t{identifying name}\n\t{subscription id}\n\t{vault name to store certificate}"
+    echo -e "\neg: \t${0} myrandomname xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx myvaultname\n"
     exit 1
 fi
 
 certName=$1
-vaultName=$2
+subscriptionId=$2
+vaultName=$3
 certFileName=$(echo $certName | tr -d ' ').pem
+certPfxFileName=$(echo $certName | tr -d ' ').pfx
 
 if [ -f "$certFileName" ]; then
     echo "$certFileName already exists"
@@ -22,7 +24,7 @@ if [ -f "$certFileName" ]; then
 fi
 
 # create a service principal called "certName" and local certifcate in correct format (read documentation)
-sp=$(az ad sp create-for-rbac --name $certName --create-cert -o json)
+sp=$(az ad sp create-for-rbac --name $certName --create-cert --scopes="/subscriptions/$subscriptionId" -o json)
 
 # upload the local certificate into the remote vault with the name "certName"
 tempCertFileName=$(echo $sp | jq -r ".fileWithCertAndPrivateKey")
@@ -40,6 +42,12 @@ az keyvault secret download \
 --vault-name $vaultName \
 --file $certFileName &> /dev/null
 
+# create .pfx file so we can login to terraform with certificates
+if [ ! -f "$certPfxFileName" ]; then
+    openssl pkcs12 -export -out $certPfxFileName -inkey $certFileName -in $certFileName -passout pass:
+fi
+
+
 # delete temporary certificate
 rm $tempCertFileName
 
@@ -52,6 +60,8 @@ cat << EOF > $certName.env
 K_spId=$spId
 K_tenantId=$tenantId
 K_certFileName=$certFileName
+K_certPfxFileName=$certPfxFileName
+K_subscriptionId=$subscriptionId
 EOF
 
 echo "Sample docker-compose.yml:"

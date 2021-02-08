@@ -12,11 +12,14 @@ Create a service principal with certificate (will need to be logged into AZ with
 # creates service principal
 # creates environment file (.env)
 # creates service principal certificate (.pem)
+# limit access to one subscription
 # presents a sample (working) docker-compose.yml
-./create_connection_config.sh <new service principal name> <vault name>
+./create_connection_config.sh <new service principal name> <subscription id> <vault name>
 ```
 
-The script will present a "working" `docker-compose.yml` file which you can copy, paste, edit etc.  If you were to copy and paste into a `docker-compose.yml` file, it would be correct for the service prinicpal/account you just configured.
+The script will present a "working" `docker-compose.yml` file which you can copy, paste, edit etc.  If you were to copy and paste into a `docker-compose.yml` file, it would be correct for the service principal you just configured and restricted to the specified subscription.  Terraform is also configured to run against this principal.
+
+(I normally add a docker bind to a host source folder so I can use these (contained) tools against my code)
 
 ## Docker Compose
 
